@@ -1,6 +1,6 @@
 "use client"
 
-import { MoreHorizontal, Eye, Calendar, ListChecks, Edit, Trash, Sparkles, FileText } from "lucide-react"
+import { MoreHorizontal, Eye, Play, ListChecks, Edit, Trash, Sparkles, FileText } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -37,12 +37,6 @@ export default function TemplateCard({
     return date.toLocaleDateString()
   }
 
-  // Truncate content for preview
-  const truncateContent = (content: string, maxLength = 100) => {
-    if (content.length <= maxLength) return content
-    return content.substring(0, maxLength) + "..."
-  }
-
   const handleCreateTask = (task: Task) => {
     // Here you would typically save the task to your backend
     setShowCreateTask(false)
@@ -53,17 +47,17 @@ export default function TemplateCard({
       <Card className="overflow-hidden">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
-            <CardTitle className="text-lg font-semibold">{template.name}</CardTitle>
+            <CardTitle className="truncate text-lg font-semibold">{template.name}</CardTitle>
             <div className="flex items-center">
               <Badge
                 variant="outline"
-                className={
+                className={`whitespace-nowrap ${
                   template.type === "AI Generated"
                     ? "bg-violet-100 text-violet-700"
                     : template.type === "Custom"
                     ? "bg-yellow-100 text-yellow-700"
                     : "bg-[#F5F5F5] text-[#F56DB6]"
-                }
+                }`}
               >
                 {template.type === "AI Generated" ? (
                   <Sparkles className="mr-1 h-3 w-3 text-violet-700" />
@@ -102,33 +96,28 @@ export default function TemplateCard({
           </div>
         </CardHeader>
         <CardContent className="pb-2">
-          <div className="mb-3 flex flex-wrap gap-1">
-            {template.variables.map((variable, index) => (
-              <Badge key={index} variant="outline" className="bg-[#F5F5F5] text-xs">
-                {`{{${variable}}}`}
-              </Badge>
-            ))}
-          </div>
-          <p className="text-sm text-gray-600">{truncateContent(template.content)}</p>
+          <p className="line-clamp-2 text-sm text-gray-600">{template.content}</p>
         </CardContent>
-        <CardFooter className="flex justify-between pt-2">
-          <Button variant="outline" size="sm" onClick={onViewDetails}>
-            <Eye className="mr-1 h-4 w-4" />
-            {t('view')}
-          </Button>
+        <CardFooter className="flex flex-col items-stretch gap-2 pt-2">
           <Button
-            variant="outline"
             size="sm"
             className="border-[#F56DB6] text-[#F56DB6] hover:bg-[#F56DB6] hover:text-white"
+            variant="outline"
             onClick={() => setShowCreateTask(true)}
           >
-            <Calendar className="mr-1 h-4 w-4" />
-            {t('useTemplate')}
+            <Play className="mr-1 h-4 w-4" />
+            {t("useTemplate")}
           </Button>
-          <Button variant="outline" size="sm" onClick={onViewRelatedTasks}>
-            <ListChecks className="mr-1 h-4 w-4" />
-            {t('tasks')} ({relatedTasksCount})
-          </Button>
+          <div className="flex justify-between gap-2">
+            <Button variant="outline" size="sm" onClick={onViewDetails} className="flex-1">
+              <Eye className="mr-1 h-4 w-4" />
+              {t("view")}
+            </Button>
+            <Button variant="outline" size="sm" onClick={onViewRelatedTasks} className="flex-1">
+              <ListChecks className="mr-1 h-4 w-4" />
+              {t("tasks")} ({relatedTasksCount})
+            </Button>
+          </div>
         </CardFooter>
       </Card>
 

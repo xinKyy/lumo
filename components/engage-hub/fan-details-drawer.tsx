@@ -126,19 +126,19 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
 
         <Tabs defaultValue="info" className="mt-6">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="info">{t('basicInfo')}</TabsTrigger>
-            <TabsTrigger value="interactions">{t('interactions')}</TabsTrigger>
-            <TabsTrigger value="notes">{t('notesTags')}</TabsTrigger>
+            <TabsTrigger value="info">{t('fanDetails.basicInfo')}</TabsTrigger>
+            <TabsTrigger value="interactions">{t('fanDetails.interactions')}</TabsTrigger>
+            <TabsTrigger value="notes">{t('fanDetails.notesAndTags')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="info" className="mt-4 space-y-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">{t('basicInformation')}</h3>
+              <h3 className="text-lg font-medium">{t('fanDetails.basicInfo')}</h3>
               <div className="space-y-2">
                 {fan.gender && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('gender')}</span>
-                    <span>{t(`gender.${fan.gender}`)}</span>
+                    <span className="text-gray-500">{t('addFan.gender')}</span>
+                    <span>{fan.gender}</span>
                   </div>
                 )}
                 {fan.birthday && (
@@ -149,13 +149,13 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
                 )}
                 {fan.country && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('countryRegion')}</span>
+                    <span className="text-gray-500">{t('addFan.country')}</span>
                     <span>{fan.country}</span>
                   </div>
                 )}
                 {fan.language && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('language')}</span>
+                    <span className="text-gray-500">{t('addFan.language')}</span>
                     <span>{fan.language}</span>
                   </div>
                 )}
@@ -164,13 +164,13 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
                   <span>{formatDate(fan.createdAt)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('updatedAt')}</span>
+                  <span className="text-gray-500">{t('fanDetails.updatedAt')}</span>
                   <span>{formatDate(fan.updatedAt)}</span>
                 </div>
               </div>
             </div>
 
-            <h3 className="text-lg font-medium mt-6">{t('contactInformation')}</h3>
+            <h3 className="text-lg font-medium mt-6">{t('fanDetails.noContactInfo')}</h3>
             <div className="space-y-3">
               {fan.email && (
                 <div className="flex items-center space-x-2">
@@ -210,37 +210,37 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
 
           <TabsContent value="interactions" className="mt-4 space-y-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">{t('interactionData')}</h3>
+              <h3 className="text-lg font-medium">{t('fanDetails.interactionData')}</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-500">{t('lastInteraction')}</span>
                   <span>{formatDate(fan.lastInteractedAt)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('lastChannel')}</span>
+                  <span className="text-gray-500">{t('fanDetails.lastChannel')}</span>
                   <span>{fan.lastInteractionChannel}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('interaction7d')}</span>
+                  <span className="text-gray-500">{t('fanDetails.7DayInteractions')}</span>
                   <span>{fan.interactionCount7d}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('dmSupported')}</span>
-                  <span>{fan.isDmSupported ? t('yes') : t('no')}</span>
+                  <span className="text-gray-500">{t('fanDetails.dmSupported')}</span>
+                  <span>{fan.isDmSupported ? "Yes" : "No"}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('followingStatus')}</span>
-                  <span>{fan.isFollowing ? t('following') : t('notFollowing')}</span>
+                  <span className="text-gray-500">{t('fanDetails.followingStatus')}</span>
+                  <span>{fan.isFollowing ? t('fanDetails.following') : t('fanDetails.notFollowing')}</span>
                 </div>
               </div>
               <div className="space-y-2 mt-6">
                 <div className="space-y-1">
-                  <span className="text-gray-500">{t('lastComment')}</span>
-                  <p className="rounded-md bg-gray-50 p-2 text-sm">{fan.lastCommentText || t('noRecentComments')}</p>
+                  <span className="text-gray-500">{t('fanDetails.lastComment')}</span>
+                  <p className="rounded-md bg-gray-50 p-2 text-sm">{fan.lastCommentText || t('fanDetails.noRecentComments')}</p>
                 </div>
               </div>
               <div className="space-y-2 mt-6">
-                <h4 className="font-medium">{t('interactionTrend7d')}</h4>
+                <h4 className="font-medium">{t('fanDetails.7DayInteractionTrend')}</h4>
                 <div className="h-64 w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={interactionData}>
@@ -256,7 +256,7 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
               <div className="flex justify-end">
                 <Button variant="outline" onClick={onViewInteractionLog}>
                   <Clock className="mr-2 h-4 w-4" />
-                  {t('viewInteractionLog')}
+                  {t('fanDetails.viewInteractionLog')}
                 </Button>
               </div>
             </div>
@@ -301,10 +301,10 @@ export default function FanDetailsDrawer({ fan, onClose, onViewInteractionLog, o
         <div className="mt-6 flex justify-between">
           <Button variant="outline" className="text-[#FF4D4F] hover:bg-[#FF4D4F] hover:text-white" onClick={onRemove}>
             <Trash className="mr-2 h-4 w-4" />
-            Remove Fan
+            {t('fanDetails.removeFan')}
           </Button>
           <Button variant="outline" onClick={onClose}>
-            Close
+          {t('close')}
           </Button>
         </div>
 

@@ -89,7 +89,7 @@ export default function TemplateDetails({ template, onClose, onViewRelatedTasks,
                 <div className="mt-4 flex justify-end">
                   <Button variant="outline" size="sm" onClick={copyToClipboard}>
                     <Copy className="mr-1 h-4 w-4" />
-                    Copy
+                    {t('copy')}
                   </Button>
                 </div>
               </div>

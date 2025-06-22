@@ -10,7 +10,7 @@ export default function PricingSection() {
   const plans = [
     {
       name: t("Starter"),
-      price: "$29",
+      price: t("Starter Price"),
       description: t("Perfect for individual creators just getting started"),
       features: [
         t("Interactive Calendar"),
@@ -23,7 +23,7 @@ export default function PricingSection() {
     },
     {
       name: t("Professional"),
-      price: "$79",
+      price: t("Professional Price"),
       description: t("For growing creators who need more advanced tools"),
       features: [
         t("Everything in Starter"),
@@ -37,7 +37,7 @@ export default function PricingSection() {
     },
     {
       name: t("Business"),
-      price: "$199",
+      price: t("Business Price"),
       description: t("For agencies and established creators with large audiences"),
       features: [
         t("Everything in Professional"),
@@ -82,7 +82,7 @@ export default function PricingSection() {
                 <CardTitle className="text-2xl">{plan.name}</CardTitle>
                 <div className="flex items-baseline">
                   <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="ml-1 text-muted-foreground">/month</span>
+                  <span className="ml-1 text-muted-foreground">{t("month")}</span>
                 </div>
                 <CardDescription className="pt-1.5">{plan.description}</CardDescription>
               </CardHeader>

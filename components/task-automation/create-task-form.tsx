@@ -507,26 +507,26 @@ export default function CreateTaskForm({ onSubmit, onCancel, initialDate = null,
           {currentStep === 2 && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium">{t('selectTargetFans')}</h3>
+                <h3 className="text-lg font-medium">{t('Select Target Fans')}</h3>
                 <div className="flex space-x-2">
                   <Button type="button" variant="outline" size="sm" onClick={handleSelectAllFans}>
-                    {t('selectAll')}
+                    {t('Select All')}
                   </Button>
                   <Button type="button" variant="outline" size="sm" onClick={handleClearFanSelection}>
-                    {t('clear')}
+                    {t('Clear')}
                   </Button>
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-4">
                 <div className="flex items-center space-x-2">
-                  <Label htmlFor="filter-priority">{t('priority')}</Label>
+                  <Label htmlFor="filter-priority">{t('Priority')}</Label>
                   <Select value={filterPriority} onValueChange={setFilterPriority}>
                     <SelectTrigger className="w-[120px]">
-                      <SelectValue placeholder={t('priority')} />
+                      <SelectValue placeholder={t('Priority')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t('all')}</SelectItem>
+                      <SelectItem value="all">{t('All')}</SelectItem>
                       <SelectItem value="P0">P0</SelectItem>
                       <SelectItem value="P1">P1</SelectItem>
                       <SelectItem value="P2">P2</SelectItem>
@@ -536,18 +536,18 @@ export default function CreateTaskForm({ onSubmit, onCancel, initialDate = null,
                   </Select>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Label htmlFor="filter-platform">{t('platform')}</Label>
+                  <Label htmlFor="filter-platform">{t('Platform')}</Label>
                   <Select value={filterPlatform} onValueChange={setFilterPlatform}>
                     <SelectTrigger className="w-[150px]">
-                      <SelectValue placeholder={t('platform')} />
+                      <SelectValue placeholder={t('Platform')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t('all')}</SelectItem>
-                      <SelectItem value="Instagram">Instagram</SelectItem>
-                      <SelectItem value="X(Twitter)">X (Twitter)</SelectItem>
-                      <SelectItem value="YouTube">YouTube</SelectItem>
-                      <SelectItem value="TikTok">TikTok</SelectItem>
-                      <SelectItem value="OnlyFans">OnlyFans</SelectItem>
+                      <SelectItem value="all">{t('All')}</SelectItem>
+                      <SelectItem value="Instagram">{t('Instagram')}</SelectItem>
+                      <SelectItem value="X(Twitter)">{t('X (Twitter)')}</SelectItem>
+                      <SelectItem value="YouTube">{t('YouTube')}</SelectItem>
+                      <SelectItem value="TikTok">{t('TikTok')}</SelectItem>
+                      <SelectItem value="OnlyFans">{t('OnlyFans')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -605,7 +605,7 @@ export default function CreateTaskForm({ onSubmit, onCancel, initialDate = null,
 
               <div className="rounded-md bg-gray-50 p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-medium">{t('selectedFans')}</span>
+                  <span className="font-medium">{t('targetFans')}</span>
                   <span className="text-[#7A3CEF]">{selectedFans.length}</span>
                 </div>
               </div>
@@ -686,11 +686,11 @@ export default function CreateTaskForm({ onSubmit, onCancel, initialDate = null,
             {currentStep > 1 ? (
               <Button type="button" variant="outline" onClick={handlePrevStep}>
                 <ChevronLeft className="mr-1 h-4 w-4" />
-                {t('previous')}
+                {t('Previous')}
               </Button>
             ) : (
               <Button type="button" variant="outline" onClick={onCancel}>
-                {t('cancel')}
+                {t('Cancel')}
               </Button>
             )}
 
@@ -704,7 +704,7 @@ export default function CreateTaskForm({ onSubmit, onCancel, initialDate = null,
                   (currentStep === 2 && selectedFans.length === 0)
                 }
               >
-                {t('next')}
+                {t('Next')}
                 <ChevronRight className="ml-1 h-4 w-4" />
               </Button>
             ) : (

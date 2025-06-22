@@ -54,105 +54,105 @@ const sampleTemplates: Template[] = [
     {
       name: "Welcome New Fan",
       variables: ["fan_name"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "Welcome to the community, {{fan_name}}! We're so glad to have you here.",
       createdAt: "2023-05-11T10:00:00Z"
     },
     {
-      name: "Fan of the Month Announcement",
+      name: "Fan of the Month Announcement", 
       variables: ["fan_name"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Congratulations {{fan_name}}! You are our Fan of the Month! Thank you for your amazing support.",
       createdAt: "2023-05-12T10:00:00Z"
     },
     {
       name: "Feedback Request",
       variables: ["fan_name", "feedback_link"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "Hi {{fan_name}}, we value your opinion! Please share your feedback here: {{feedback_link}}.",
       createdAt: "2023-05-13T10:00:00Z"
     },
     {
       name: "Live Stream Invitation",
       variables: ["fan_name", "stream_time", "stream_link"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Hey {{fan_name}}, join our live stream at {{stream_time}}! Watch here: {{stream_link}}.",
       createdAt: "2023-05-14T10:00:00Z"
     },
     {
       name: "Exclusive Content Alert",
       variables: ["fan_name", "content_title", "content_link"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "Hi {{fan_name}}, exclusive content '{{content_title}}' is now available! Check it out: {{content_link}}.",
       createdAt: "2023-05-15T10:00:00Z"
     },
     {
       name: "Event Reminder",
       variables: ["fan_name", "event_name", "event_time"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Don't forget, {{fan_name}}! '{{event_name}}' is happening at {{event_time}}. See you there!",
       createdAt: "2023-05-16T10:00:00Z"
     },
     {
       name: "Thank Top Supporter",
       variables: ["fan_name"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "{{fan_name}}, thank you for being one of our top supporters! Your dedication means a lot.",
       createdAt: "2023-05-17T10:00:00Z"
     },
     {
       name: "Newsletter Story Request",
       variables: ["fan_name", "story_link"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Hi {{fan_name}}, do you have a story to share? Submit it for our next newsletter: {{story_link}}.",
       createdAt: "2023-05-18T10:00:00Z"
     },
     {
       name: "Fan Poll Invitation",
       variables: ["fan_name", "poll_link"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "Hey {{fan_name}}, help us decide! Vote in our latest poll: {{poll_link}}.",
       createdAt: "2023-05-19T10:00:00Z"
     },
     {
       name: "Birthday Coupon",
       variables: ["fan_name", "coupon_code"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Happy Birthday, {{fan_name}}! Use coupon code {{coupon_code}} for a special gift.",
       createdAt: "2023-05-20T10:00:00Z"
     },
     {
       name: "Fan Art Submission Call",
       variables: ["fan_name", "submission_link"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "{{fan_name}}, show us your creativity! Submit your fan art here: {{submission_link}}.",
       createdAt: "2023-05-21T10:00:00Z"
     },
     {
       name: "Q&A Session Invite",
       variables: ["fan_name", "session_time", "session_link"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Join our Q&A session at {{session_time}}, {{fan_name}}! Details: {{session_link}}.",
       createdAt: "2023-05-22T10:00:00Z"
     },
     {
       name: "Milestone Celebration",
       variables: ["fan_name", "milestone"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "We did it, {{fan_name}}! We've reached {{milestone}} together. Thank you for being part of this journey!",
       createdAt: "2023-05-23T10:00:00Z"
     },
     {
       name: "Exclusive Offer for Fans",
       variables: ["fan_name", "offer_details"],
-      type: "Custom",
+      type: "Custom" as const,
       content: "Special for you, {{fan_name}}: {{offer_details}}. Don't miss out!",
       createdAt: "2023-05-24T10:00:00Z"
     },
     {
       name: "Fan Collaboration Opportunity",
       variables: ["fan_name", "collab_link"],
-      type: "AI Generated",
+      type: "AI Generated" as const,
       content: "{{fan_name}}, want to collaborate? Check out this opportunity: {{collab_link}}.",
       createdAt: "2023-05-25T10:00:00Z"
     },
@@ -160,22 +160,6 @@ const sampleTemplates: Template[] = [
 ]
 
 // Sample related tasks
-const sampleRelatedTasks = [
-  {
-    id: "1",
-    name: "Send Birthday Wishes",
-    templateId: "1",
-    createdAt: "2023-04-20T11:30:00Z",
-  },
-  {
-    id: "2",
-    name: "Notify VIP Fans about New Content",
-    templateId: "2",
-    createdAt: "2023-05-12T15:45:00Z",
-  },
-]
-
-export const fakeFanIds = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 export const fakeChannels = ["Email", "Instagram", "Line", "X (Twitter)", "WhatsApp"];
 export const fakeStatuses = ["Active", "Completed", "Disabled"];
 export const fakeNames = [
@@ -189,8 +173,8 @@ sampleTemplates.forEach((tpl, tplIdx) => {
   const taskCount = 3 + (tplIdx % 8); // 3-10条
   for (let i = 0; i < taskCount; i++) {
     mockTasks.push({
-      id: `${tplId}-${i+1}`,
-      name: fakeNames[(tplIdx * 3 + i) % fakeNames.length] + (i % 2 === 0 ? "" : ` #${i+1}`),
+      id: `${tplId}-${i + 1}`,
+      name: fakeNames[(tplIdx * 3 + i) % fakeNames.length] + (i % 2 === 0 ? "" : ` #${i + 1}`),
       templateId: tplId.toString(),
       createdAt: `2023-05-${(10 + i).toString().padStart(2, "0")}T${8 + i}:00:00Z`,
       type: ["Event", "Scheduled"][i % 2],
@@ -200,7 +184,9 @@ sampleTemplates.forEach((tpl, tplIdx) => {
       timezone: ["UTC", "Personalized"][i % 2],
       status: fakeStatuses[i % fakeStatuses.length],
       notes: `Task for template ${tplId}`,
-      targetFans: fakeFanIds.slice(0, (i % fakeFanIds.length) + 1),
+      targetFans: [], // 移除对未定义变量 fakeFanIds 的引用
+      isEnabled: false,
+      scheduledDate: ""
     });
   }
 });
@@ -235,7 +221,7 @@ export default function SmartContent() {
     const lang = i18n.language in templateNameMap ? i18n.language : 'en';
     return sampleTemplates.map((tpl, i) => ({
       ...tpl,
-      name: templateNameMap[lang][i] || tpl.name
+      name: templateNameMap[lang as keyof typeof templateNameMap][i] || tpl.name
     }))
   }, [i18n.language])
   
@@ -334,11 +320,12 @@ export default function SmartContent() {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex items-center space-x-2">
-          <SortDesc className="h-4 w-4 text-gray-500" />
+        <div className="flex items-center gap-4">
+          
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder={t('sortBy')} />
+              <SortDesc className="mr-2 h-4 w-4" />
+              <SelectValue placeholder={t('recentFirst')} />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="createdAt">{t('recentFirst')}</SelectItem>

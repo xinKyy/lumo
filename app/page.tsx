@@ -13,7 +13,12 @@ import LandingHeader from "@/components/landing/landing-header"
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
+      <div className="bg-red-500 text-white p-2 text-center">
+        Header should be visible above this red bar
+      </div>
       <LandingHeader />
+      <div className="bg-blue-500 text-white p-2 text-center">
+      </div>
       <HeroSection />
       <HighlightsSection />
       <FeatureSection />

@@ -146,7 +146,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="avatar"
                     value={formData.avatar || ""}
                     onChange={(e) => handleChange("avatar", e.target.value)}
-                    placeholder="https://example.com/avatar.jpg"
+                    placeholder={t('addFan.avatarPlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -156,11 +156,11 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                       <SelectValue placeholder={t('addFan.selectPlatform')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Instagram">Instagram</SelectItem>
-                      <SelectItem value="X(Twitter)">X (Twitter)</SelectItem>
-                      <SelectItem value="YouTube">YouTube</SelectItem>
-                      <SelectItem value="TikTok">TikTok</SelectItem>
-                      <SelectItem value="OnlyFans">OnlyFans</SelectItem>
+                      <SelectItem value="Instagram">{t('Instagram')}</SelectItem>
+                      <SelectItem value="X(Twitter)">{t('X (Twitter)')}</SelectItem>
+                      <SelectItem value="YouTube">{t('YouTube')}</SelectItem>
+                      <SelectItem value="TikTok">{t('TikTok')}</SelectItem>
+                      <SelectItem value="OnlyFans">{t('OnlyFans')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -170,7 +170,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="handle"
                     value={formData.handle || ""}
                     onChange={(e) => handleChange("handle", e.target.value)}
-                    placeholder="@username"
+                    placeholder={t('addFan.handlePlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -201,10 +201,10 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                       <SelectValue placeholder={t('addFan.selectGender')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Male">Male</SelectItem>
-                      <SelectItem value="Female">Female</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                      <SelectItem value="Prefer not to say">Prefer not to say</SelectItem>
+                      <SelectItem value="Male">{t('gender.male')}</SelectItem>
+                      <SelectItem value="Female">{t('gender.female')}</SelectItem>
+                      <SelectItem value="Other">{t('gender.other')}</SelectItem>
+                      <SelectItem value="Prefer not to say">{t('gender.unknown')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -215,7 +215,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     type="date"
                     value={formData.birthday || ""}
                     onChange={(e) => handleChange("birthday", e.target.value)}
-                    placeholder="YYYY-MM-DD" // For best experience, use English browser or a custom date picker
+                    placeholder={t('addFan.birthdayPlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -225,14 +225,14 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                       <SelectValue placeholder={t('addFan.selectCountry')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="United States">United States</SelectItem>
-                      <SelectItem value="Japan">Japan</SelectItem>
-                      <SelectItem value="China">China</SelectItem>
-                      <SelectItem value="United Kingdom">United Kingdom</SelectItem>
-                      <SelectItem value="Canada">Canada</SelectItem>
-                      <SelectItem value="Australia">Australia</SelectItem>
-                      <SelectItem value="Germany">Germany</SelectItem>
-                      <SelectItem value="France">France</SelectItem>
+                      <SelectItem value="United States">{t('United States')}</SelectItem>
+                      <SelectItem value="Japan">{t('Japan')}</SelectItem>
+                      <SelectItem value="China">{t('China')}</SelectItem>
+                      <SelectItem value="United Kingdom">{t('United Kingdom')}</SelectItem>
+                      <SelectItem value="Canada">{t('Canada')}</SelectItem>
+                      <SelectItem value="Australia">{t('Australia')}</SelectItem>
+                      <SelectItem value="Germany">{t('Germany')}</SelectItem>
+                      <SelectItem value="France">{t('France')}</SelectItem>
                       {/* Add more countries as needed */}
                     </SelectContent>
                   </Select>
@@ -244,12 +244,12 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                       <SelectValue placeholder={t('addFan.selectLanguage')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="English">English</SelectItem>
-                      <SelectItem value="Japanese">Japanese</SelectItem>
-                      <SelectItem value="Chinese">Chinese</SelectItem>
-                      <SelectItem value="Spanish">Spanish</SelectItem>
-                      <SelectItem value="French">French</SelectItem>
-                      <SelectItem value="German">German</SelectItem>
+                      <SelectItem value="English">{t('English')}</SelectItem>
+                      <SelectItem value="Japanese">{t('Japanese')}</SelectItem>
+                      <SelectItem value="Chinese">{t('Chinese')}</SelectItem>
+                      <SelectItem value="Spanish">{t('Spanish')}</SelectItem>
+                      <SelectItem value="French">{t('French')}</SelectItem>
+                      <SelectItem value="German">{t('German')}</SelectItem>
                       {/* Add more languages as needed */}
                     </SelectContent>
                   </Select>
@@ -266,7 +266,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     type="email"
                     value={formData.email || ""}
                     onChange={(e) => handleChange("email", e.target.value)}
-                    placeholder="email@example.com"
+                    placeholder={t('addFan.emailPlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -275,7 +275,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="line"
                     value={formData.line || ""}
                     onChange={(e) => handleChange("line", e.target.value)}
-                    placeholder="Line ID"
+                    placeholder={t('addFan.linePlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -284,7 +284,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="twitter"
                     value={formData.twitter || ""}
                     onChange={(e) => handleChange("twitter", e.target.value)}
-                    placeholder="@username"
+                    placeholder={t('addFan.twitterPlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -293,7 +293,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="whatsapp"
                     value={formData.whatsapp || ""}
                     onChange={(e) => handleChange("whatsapp", e.target.value)}
-                    placeholder="+1234567890"
+                    placeholder={t('addFan.whatsappPlaceholder')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -302,7 +302,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="instagram"
                     value={formData.instagram || ""}
                     onChange={(e) => handleChange("instagram", e.target.value)}
-                    placeholder="@username"
+                    placeholder={t('addFan.instagramPlaceholder')}
                   />
                 </div>
               </div>
@@ -316,7 +316,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     <Input
                       value={newTag}
                       onChange={(e) => setNewTag(e.target.value)}
-                      placeholder={t('addFan.addTag')}
+                      placeholder={t('addFan.tagPlaceholder')}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           e.preventDefault()
@@ -335,7 +335,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                         <X className="h-3 w-3 cursor-pointer" onClick={() => handleRemoveTag(tag.label)} />
                       </Badge>
                     ))}
-                    {formData.tags?.length === 0 && <span className="text-sm text-gray-500">No tags added yet</span>}
+                    {formData.tags?.length === 0 && <span className="text-sm text-gray-500">{t('addFan.noTagsAdded')}</span>}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -344,7 +344,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
                     id="notes"
                     value={formData.notes || ""}
                     onChange={(e) => handleChange("notes", e.target.value)}
-                    placeholder="Add notes about this fan"
+                    placeholder={t('addFan.addNotesPlaceholder')}
                     rows={5}
                   />
                 </div>
@@ -354,7 +354,7 @@ export default function AddFanForm({ onSubmit, onCancel }: AddFanFormProps) {
 
           <div className="flex justify-end space-x-3">
             <Button type="button" variant="outline" onClick={onCancel}>
-              {t('addFan.cancel')}
+              {t('Cancel')}
             </Button>
             <Button type="submit" className="btn-primary">
               {t('addFan.save')}

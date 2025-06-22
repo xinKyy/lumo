@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import "@/lib/i18n"
 
 export interface Notification {
   id: string
@@ -119,8 +120,8 @@ export default function NotificationDrawer({
 
         <Tabs defaultValue="all" className="mt-6">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="all">{t("all")}</TabsTrigger>
-            <TabsTrigger value="unread">{t("unread")}</TabsTrigger>
+            <TabsTrigger value="all">{t("All")}</TabsTrigger>
+            <TabsTrigger value="unread">{t("tab.unread")}</TabsTrigger>
             <TabsTrigger value="read">{t("read")}</TabsTrigger>
           </TabsList>
 

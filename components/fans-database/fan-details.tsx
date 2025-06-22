@@ -134,29 +134,29 @@ export default function FanDetails({ fan, onClose, onViewInteractionLog, onRemov
 
           <TabsContent value="info" className="mt-4 space-y-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">{t('fanDetails.basicInformation')}</h3>
+              <h3 className="text-lg font-medium">{t('fanDetails.basicInfo')}</h3>
               <div className="space-y-2">
                 {fan.gender && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('fanDetails.gender')}</span>
+                    <span className="text-gray-500">{t('addFan.gender')}</span>
                     <span>{fan.gender}</span>
                   </div>
                 )}
                 {fan.birthday && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('fanDetails.birthday')}</span>
+                    <span className="text-gray-500">{t('addFan.birthday')}</span>
                     <span>{formatDate(fan.birthday)}</span>
                   </div>
                 )}
                 {fan.country && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('fanDetails.country')}</span>
+                    <span className="text-gray-500">{t('addFan.country')}</span>
                     <span>{fan.country}</span>
                   </div>
                 )}
                 {fan.language && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">{t('fanDetails.language')}</span>
+                    <span className="text-gray-500">{t('addFan.language')}</span>
                     <span>{fan.language}</span>
                   </div>
                 )}
@@ -171,7 +171,7 @@ export default function FanDetails({ fan, onClose, onViewInteractionLog, onRemov
               </div>
             </div>
 
-            <h3 className="text-lg font-medium mt-6">{t('fanDetails.contactInformation')}</h3>
+            <h3 className="text-lg font-medium mt-6">{t('fanDetails.noContactInfo')}</h3>
             <div className="space-y-3">
               {fan.email && (
                 <div className="flex items-center space-x-2">
@@ -214,7 +214,7 @@ export default function FanDetails({ fan, onClose, onViewInteractionLog, onRemov
               <h3 className="text-lg font-medium">{t('fanDetails.interactionData')}</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">{t('fanDetails.lastInteraction')}</span>
+                  <span className="text-gray-500">{t('lastInteraction')}</span>
                   <span>{formatDate(fan.lastInteractedAt)}</span>
                 </div>
                 <div className="flex justify-between">
@@ -311,7 +311,7 @@ export default function FanDetails({ fan, onClose, onViewInteractionLog, onRemov
             {t('fanDetails.removeFan')}
           </Button>
           <Button variant="outline" onClick={onClose}>
-            {t('fanDetails.close')}
+            {t('close')}
           </Button>
         </div>
 
