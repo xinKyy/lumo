@@ -18,7 +18,9 @@ export default function HeroSection() {
               {t('Light Up Fandom, Right On Time.')}
             </p>
             <p className="text-xl text-muted-foreground md:text-2xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {t("Lumo's smart timing lights up true connections: Effortlessly nurture your fandom with personalized moments, always on time.")}
+              {t("Lumo's smart timing lights up true connections: ")}
+            <br/>
+              {t("Effortlessly nurture your fandom with personalized moments, always on time.")}
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link href="/auth/register">
