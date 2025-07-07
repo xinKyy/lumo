@@ -29,9 +29,9 @@ export default function LoginPage() {
     }
     // 根据账号类型跳转到不同页面
     if (userType === 'business') {
-      router.push("/creator-database")
+      router.push("/core/creator-database")
     } else {
-      router.push("/interactive-calendar")
+      router.push("/core/interactive-calendar")
     }
   }
 
@@ -170,4 +170,4 @@ export default function LoginPage() {
       </div>
     </div>
   )
-} 
+}

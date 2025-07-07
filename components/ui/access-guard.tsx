@@ -55,15 +55,15 @@ export default function AccessGuard({ children, disabledForBusiness = false }: A
               </div>
             </div>
             <div className="flex space-x-3">
-              <Button 
-                onClick={() => router.push('/team-management')}
+              <Button
+                onClick={() => router.push('/core/team-management')}
                 className="flex-1"
               >
                 前往团队管理
               </Button>
-              <Button 
+              <Button
                 variant="outline"
-                onClick={() => router.push('/settings')}
+                onClick={() => router.push('/core/settings')}
               >
                 设置
               </Button>
@@ -75,4 +75,4 @@ export default function AccessGuard({ children, disabledForBusiness = false }: A
   }
 
   return <>{children}</>
-} 
+}

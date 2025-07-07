@@ -12,21 +12,21 @@ export default function AppRoot() {
     // Check user type and redirect accordingly
     if (typeof window !== 'undefined') {
       const userType = localStorage.getItem('userType')
-      
+
       if (userType === 'business') {
         // Business users go to creator database
-        router.push('/creator-database')
+        router.push('/core/creator-database')
       } else {
         // Other users go to dashboard
-        router.push('/dashboard')
+        router.push('/core/dashboard')
       }
     }
-    
+
     // Set loading to false after a short delay
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 1000)
-    
+
     return () => clearTimeout(timer)
   }, [router])
 
@@ -42,4 +42,4 @@ export default function AppRoot() {
   }
 
   return null
-} 
+}

@@ -24,10 +24,10 @@ export default function AppLayout({
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className={`flex-1 overflow-auto bg-[#F5F5F5] ${pathname === '/engage-hub' ? 'p-0' : 'p-6'}`}>
+        <main className={`flex-1 overflow-auto bg-[#F5F5F5] ${pathname === '/core/engage-hub' ? 'p-0' : 'p-6'}`}>
           {children}
         </main>
       </div>
     </div>
   )
-} 
+}

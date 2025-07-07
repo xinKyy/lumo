@@ -36,9 +36,9 @@ export default function RegisterPage() {
   const handleCompleteRegistration = () => {
     // 根据账号类型跳转到不同页面
     if (userType === 'business') {
-      router.push("/team-management")
+      router.push("/core/team-management")
     } else {
-      router.push("/interactive-calendar")
+      router.push("/core/interactive-calendar")
     }
   }
 
@@ -325,7 +325,7 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
-              <Button 
+              <Button
                 className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
                 onClick={handleCompleteRegistration}
               >
@@ -358,7 +358,7 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
-              <Button 
+              <Button
                 className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
                 onClick={handleCompleteRegistration}
               >
@@ -384,4 +384,4 @@ export default function RegisterPage() {
       </div>
     </div>
   )
-} 
+}

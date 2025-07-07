@@ -41,7 +41,7 @@ export default function Sidebar() {
   // 定义需要为企业账号隐藏的功能
   const hiddenForBusiness = [
     'interactiveCalendar',
-    'fansDatabase', 
+    'fansDatabase',
     'taskAutomation',
     'smartContent',
     'engageHub',
@@ -49,24 +49,24 @@ export default function Sidebar() {
   ]
 
   const mainMenu = [
-    ...(userType === 'business' ? [{ key: 'creatorDatabase', icon: <UserPlus className="mr-3 h-5 w-5" />, route: '/creator-database' }] : []),
-    { key: 'interactiveCalendar', icon: <Calendar className="mr-3 h-5 w-5" />, route: '/interactive-calendar' },
-    { key: 'fansDatabase', icon: <Users className="mr-3 h-5 w-5" />, route: '/fans-database' },
-    { key: 'taskAutomation', icon: <ListChecks className="mr-3 h-5 w-5" />, route: '/task-automation' },
-    { key: 'smartContent', icon: <Sparkles className="mr-3 h-5 w-5" />, route: '/smart-content' },
-    { key: 'engageHub', icon: <MessageSquare className="mr-3 h-5 w-5" />, route: '/engage-hub' },
-    { key: 'dashboard', icon: <LayoutDashboard className="mr-3 h-5 w-5" />, route: '/dashboard' },
+    ...(userType === 'business' ? [{ key: 'creatorDatabase', icon: <UserPlus className="mr-3 h-5 w-5" />, route: '/core/creator-database' }] : []),
+    { key: 'interactiveCalendar', icon: <Calendar className="mr-3 h-5 w-5" />, route: '/core/interactive-calendar' },
+    { key: 'fansDatabase', icon: <Users className="mr-3 h-5 w-5" />, route: '/core/fans-database' },
+    { key: 'taskAutomation', icon: <ListChecks className="mr-3 h-5 w-5" />, route: '/core/task-automation' },
+    { key: 'smartContent', icon: <Sparkles className="mr-3 h-5 w-5" />, route: '/core/smart-content' },
+    { key: 'engageHub', icon: <MessageSquare className="mr-3 h-5 w-5" />, route: '/core/engage-hub' },
+    { key: 'dashboard', icon: <LayoutDashboard className="mr-3 h-5 w-5" />, route: '/core/dashboard' },
   ]
 
   const workspaceMenu = [
-    { key: 'settings', icon: <Settings className="mr-3 h-5 w-5" />, route: '/settings' },
+    { key: 'settings', icon: <Settings className="mr-3 h-5 w-5" />, route: '/core/settings' },
     ...(userType === 'business' ? [
-      { key: 'teamManagement', icon: <Users className="mr-3 h-5 w-5" />, route: '/team-management' }
+      { key: 'teamManagement', icon: <Users className="mr-3 h-5 w-5" />, route: '/core/team-management' }
     ] : []),
   ]
 
   // 过滤掉企业账号需要隐藏的菜单项
-  const filteredMainMenu = mainMenu.filter(item => 
+  const filteredMainMenu = mainMenu.filter(item =>
     userType !== 'business' || !hiddenForBusiness.includes(item.key)
   )
 
