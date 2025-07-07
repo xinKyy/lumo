@@ -3,7 +3,7 @@ import "@/lib/i18n"
 
 import { useState } from "react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { ArrowLeft, ArrowRight, Building2, Check, Instagram, TwitterIcon as TikTok, User, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next"
 
 export default function RegisterPage() {
   const { t } = useTranslation()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const initialType = searchParams.get("type") === "business" ? "business" : "personal"
   const [userType, setUserType] = useState<"personal" | "business">(initialType)
@@ -30,6 +31,15 @@ export default function RegisterPage() {
 
   const handleBack = () => {
     setStep(Math.max(1, step - 1))
+  }
+
+  const handleCompleteRegistration = () => {
+    // 根据账号类型跳转到不同页面
+    if (userType === 'business') {
+      router.push("/team-management")
+    } else {
+      router.push("/interactive-calendar")
+    }
   }
 
   return (
@@ -315,7 +325,10 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
-              <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+              <Button 
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                onClick={handleCompleteRegistration}
+              >
                 {t('Go to Lumo')}
               </Button>
               <Link href="/" className="w-full">
@@ -345,7 +358,10 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
-              <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+              <Button 
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                onClick={handleCompleteRegistration}
+              >
                 {t('Go to Business Dashboard')}
               </Button>
               <Link href="/" className="w-full">

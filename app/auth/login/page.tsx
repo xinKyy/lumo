@@ -27,7 +27,12 @@ export default function LoginPage() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('userType', userType)
     }
-    router.push("/interactive-calendar")
+    // 根据账号类型跳转到不同页面
+    if (userType === 'business') {
+      router.push("/creator-database")
+    } else {
+      router.push("/interactive-calendar")
+    }
   }
 
   return (

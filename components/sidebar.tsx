@@ -12,6 +12,7 @@ import {
   Clock,
   LayoutDashboard,
   ListChecks,
+  UserPlus,
 } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import "@/lib/i18n"
@@ -37,7 +38,18 @@ export default function Sidebar() {
     router.push(route)
   }
 
+  // 定义需要为企业账号隐藏的功能
+  const hiddenForBusiness = [
+    'interactiveCalendar',
+    'fansDatabase', 
+    'taskAutomation',
+    'smartContent',
+    'engageHub',
+    'dashboard'
+  ]
+
   const mainMenu = [
+    ...(userType === 'business' ? [{ key: 'creatorDatabase', icon: <UserPlus className="mr-3 h-5 w-5" />, route: '/creator-database' }] : []),
     { key: 'interactiveCalendar', icon: <Calendar className="mr-3 h-5 w-5" />, route: '/interactive-calendar' },
     { key: 'fansDatabase', icon: <Users className="mr-3 h-5 w-5" />, route: '/fans-database' },
     { key: 'taskAutomation', icon: <ListChecks className="mr-3 h-5 w-5" />, route: '/task-automation' },
@@ -45,10 +57,18 @@ export default function Sidebar() {
     { key: 'engageHub', icon: <MessageSquare className="mr-3 h-5 w-5" />, route: '/engage-hub' },
     { key: 'dashboard', icon: <LayoutDashboard className="mr-3 h-5 w-5" />, route: '/dashboard' },
   ]
+
   const workspaceMenu = [
     { key: 'settings', icon: <Settings className="mr-3 h-5 w-5" />, route: '/settings' },
-    ...(userType === 'business' ? [{ key: 'teamManagement', icon: <Users className="mr-3 h-5 w-5" />, route: '/team-management' }] : []),
+    ...(userType === 'business' ? [
+      { key: 'teamManagement', icon: <Users className="mr-3 h-5 w-5" />, route: '/team-management' }
+    ] : []),
   ]
+
+  // 过滤掉企业账号需要隐藏的菜单项
+  const filteredMainMenu = mainMenu.filter(item => 
+    userType !== 'business' || !hiddenForBusiness.includes(item.key)
+  )
 
   return (
     <aside className="h-screen w-64 bg-white rounded-3xl m-4 flex flex-col justify-between">
@@ -56,7 +76,7 @@ export default function Sidebar() {
         {/* 主菜单 */}
         <nav className="mt-2">
           <ul className="space-y-1">
-            {mainMenu.map((item) => (
+            {filteredMainMenu.map((item) => (
               <li key={item.key}>
                 <button
                   onClick={() => handleItemClick(item.route)}

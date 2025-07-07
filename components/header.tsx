@@ -57,6 +57,8 @@ const platformAccounts = [
   }
 ]
 
+
+
 // Mock accounts data
 const mockAccounts = [
   {
@@ -87,22 +89,26 @@ export default function Header() {
   const [currentUser, setCurrentUser] = useState(mockAccounts[0])
   const [currentPlatform, setCurrentPlatform] = useState(platformAccounts[0])
   const [notifications, setNotifications] = useState<Notification[]>(sampleNotifications)
+  const [userType, setUserType] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   // 语言切换相关
   const { t, i18n } = useTranslation()
   const [lang, setLang] = useState('en') // 默认使用英语，避免hydration错误
   const [langOpen, setLangOpen] = useState(false)
-  const [mounted, setMounted] = useState(false) // 添加mounted状态来避免hydration错误
   
   const langOptions = [
     { value: 'en', label: 'EN', icon: '/language/gb.svg' },
     { value: 'ja', label: '日本語', icon: '/language/jp.svg' },
   ]
 
-  // 在客户端挂载后设置正确的语言
+  // 在客户端挂载后设置正确的语言和用户类型
   useEffect(() => {
     setMounted(true)
     setLang(i18n.language || 'en')
+    if (typeof window !== 'undefined') {
+      setUserType(localStorage.getItem('userType'))
+    }
   }, [i18n.language])
 
   const handleLangChange = (lng: string) => {
@@ -154,79 +160,88 @@ export default function Header() {
     }
   }
 
+
+
+  if (!mounted) return null
+
   return (
     <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
       <div className="flex items-center space-x-6">
         <img src="/Lumo-logo.png" alt="Lumo Logo" className="h-8 w-auto" />
-        <div className="h-8 w-px bg-gray-200"></div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="flex items-center space-x-3 px-4 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all duration-200 border border-gray-200/50 hover:border-gray-300/50 shadow-sm hover:shadow-md">
-              <Avatar className="h-7 w-7 ring-2 ring-white">
-                <AvatarImage src={currentPlatform.avatar} alt={currentPlatform.handle} />
-                <AvatarFallback className="text-xs font-medium">{currentPlatform.handle[1]}</AvatarFallback>
-              </Avatar>
-              <div className="flex items-center">
-                <div className="mr-3">
-                  <div className="flex items-center">
-                    {getPlatformIcon(currentPlatform.platform)}
-                    <span className="ml-2 text-sm font-semibold text-gray-800">{currentPlatform.handle}</span>
-                  </div>
-                  <div className="text-xs text-gray-500 font-medium">{currentPlatform.followers} {t("followers")}</div>
-                </div>
-                <ChevronDown className="h-4 w-4 text-gray-400 transition-transform duration-200" />
-              </div>
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-72 p-2">
-            <div className="px-2 py-1.5">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t("platformAccounts")}</h3>
-            </div>
-            {platformAccounts.map((account) => (
-              <DropdownMenuItem
-                key={account.id}
-                onClick={() => handleSwitchPlatform(account)}
-                className="cursor-pointer rounded-lg p-3 hover:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-center w-full">
-                  <Avatar className="h-10 w-10 mr-3 ring-2 ring-gray-100">
-                    <AvatarImage src={account.avatar} alt={account.handle} />
-                    <AvatarFallback className="text-sm font-medium">{account.handle[1]}</AvatarFallback>
+        {/* 只有个人用户才显示平台账号切换按钮 */}
+        {userType === 'personal' && (
+          <>
+            <div className="h-8 w-px bg-gray-200"></div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center space-x-3 px-4 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all duration-200 border border-gray-200/50 hover:border-gray-300/50 shadow-sm hover:shadow-md">
+                  <Avatar className="h-7 w-7 ring-2 ring-white">
+                    <AvatarImage src={currentPlatform.avatar} alt={currentPlatform.handle} />
+                    <AvatarFallback className="text-xs font-medium">{currentPlatform.handle[1]}</AvatarFallback>
                   </Avatar>
-                  <div className="flex-1">
-                    <div className="flex items-center mb-1">
-                      {getPlatformIcon(account.platform)}
-                      <span className="ml-2 text-sm font-semibold text-gray-800">{account.handle}</span>
-                    </div>
-                    <p className="text-xs text-gray-500 font-medium">{account.followers} {t("followers")}</p>
-                  </div>
-                  {account.isActive && (
-                    <div className="flex items-center justify-center h-5 w-5 rounded-full bg-[#7A3CEF]">
-                      <Check className="h-3 w-3 text-white" />
-                    </div>
-                  )}
-                </div>
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator className="my-2" />
-            <DropdownMenuItem 
-              onClick={handleAddPlatformAccount} 
-              className="cursor-pointer rounded-lg p-3 hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex items-center w-full">
-                <div className="flex items-center justify-center h-10 w-10 mr-3 rounded-full bg-gradient-to-br from-purple-100 to-gray-200">
-                  <PlusCircle className="h-5 w-5 text-purple-600" />
-                </div>
-                <div className="flex-1">
                   <div className="flex items-center">
-                    <span className="text-sm font-semibold text-gray-800">{t("addNewAccount")}</span>
+                    <div className="mr-3">
+                      <div className="flex items-center">
+                        {getPlatformIcon(currentPlatform.platform)}
+                        <span className="ml-2 text-sm font-semibold text-gray-800">{currentPlatform.handle}</span>
+                      </div>
+                      <div className="text-xs text-gray-500 font-medium">{currentPlatform.followers} {t("followers")}</div>
+                    </div>
+                    <ChevronDown className="h-4 w-4 text-gray-400 transition-transform duration-200" />
                   </div>
-                  <p className="text-xs text-gray-600 font-medium">{t("connectNewPlatform")}</p>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-72 p-2">
+                <div className="px-2 py-1.5">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t("platformAccounts")}</h3>
                 </div>
-              </div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+                {platformAccounts.map((account) => (
+                  <DropdownMenuItem
+                    key={account.id}
+                    onClick={() => handleSwitchPlatform(account)}
+                    className="cursor-pointer rounded-lg p-3 hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="flex items-center w-full">
+                      <Avatar className="h-10 w-10 mr-3 ring-2 ring-gray-100">
+                        <AvatarImage src={account.avatar} alt={account.handle} />
+                        <AvatarFallback className="text-sm font-medium">{account.handle[1]}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="flex items-center mb-1">
+                          {getPlatformIcon(account.platform)}
+                          <span className="ml-2 text-sm font-semibold text-gray-800">{account.handle}</span>
+                        </div>
+                        <p className="text-xs text-gray-500 font-medium">{account.followers} {t("followers")}</p>
+                      </div>
+                      {account.isActive && (
+                        <div className="flex items-center justify-center h-5 w-5 rounded-full bg-[#7A3CEF]">
+                          <Check className="h-3 w-3 text-white" />
+                        </div>
+                      )}
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuSeparator className="my-2" />
+                <DropdownMenuItem 
+                  onClick={handleAddPlatformAccount} 
+                  className="cursor-pointer rounded-lg p-3 hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center w-full">
+                    <div className="flex items-center justify-center h-10 w-10 mr-3 rounded-full bg-gradient-to-br from-purple-100 to-gray-200">
+                      <PlusCircle className="h-5 w-5 text-purple-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center">
+                        <span className="text-sm font-semibold text-gray-800">{t("addNewAccount")}</span>
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium">{t("connectNewPlatform")}</p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        )}
       </div>
       <div className="flex items-center space-x-6">
         {/* 语言切换按钮 */}
