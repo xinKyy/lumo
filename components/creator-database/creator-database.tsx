@@ -91,7 +91,7 @@ const sampleCreators: Creator[] = [
   },
   {
     id: "3",
-    name: "Emma Davis",
+    name: "桜　桃子",
     ggtkId: "GGTK003",
     tiktokId: "@emma.gaming.queen",
     numberId: "003",

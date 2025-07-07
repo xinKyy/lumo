@@ -230,9 +230,10 @@ export default function AddCreatorForm({ onClose, onSubmit }: AddCreatorFormProp
                   <Label htmlFor="joinDate">{t("creatorDatabase.joinDate")} *</Label>
                   <Input
                     id="joinDate"
-                    type="date"
+                    type="text"
                     {...register("joinDate")}
                     className="rounded-lg border-gray-200 focus:border-[#7A3CEF] focus:ring-2 focus:ring-[#E9D8FD]"
+                    placeholder="月月 日日 年年年年"
                   />
                   {errors.joinDate && (
                     <p className="text-xs text-red-500">{errors.joinDate.message}</p>
@@ -261,9 +262,9 @@ export default function AddCreatorForm({ onClose, onSubmit }: AddCreatorFormProp
                       <SelectValue placeholder={t("creatorDatabase.selectGender")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Male">Male</SelectItem>
-                      <SelectItem value="Female">Female</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
+                      <SelectItem value="男性">Male</SelectItem>
+                      <SelectItem value="Female">女性</SelectItem>
+                      <SelectItem value="Other">その他</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -283,20 +284,28 @@ export default function AddCreatorForm({ onClose, onSubmit }: AddCreatorFormProp
                   <Label htmlFor="birthday">{t("creatorDatabase.birthday")}</Label>
                   <Input
                     id="birthday"
-                    type="date"
+                    type="text"
                     {...register("birthday")}
                     className="rounded-lg border-gray-200 focus:border-[#7A3CEF] focus:ring-2 focus:ring-[#E9D8FD]"
+                    placeholder="月月 日日 年年年年"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="occupation">{t("creatorDatabase.occupation")}</Label>
-                  <Input
-                    id="occupation"
-                    {...register("occupation")}
-                    placeholder={t("creatorDatabase.enterOccupation")}
-                    className="rounded-lg border-gray-200 focus:border-[#7A3CEF] focus:ring-2 focus:ring-[#E9D8FD]"
-                  />
+                  <Select onValueChange={(value) => setValue("occupation", value)}>
+                    <SelectTrigger className="rounded-lg border-gray-200 focus:border-[#7A3CEF] focus:ring-2 focus:ring-[#E9D8FD]">
+                      <SelectValue placeholder={t("creatorDatabase.enterOccupation")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="正社員">正社員</SelectItem>
+                      <SelectItem value="契約写真">契約写真</SelectItem>
+                      <SelectItem value="業務委託系">業務委託系</SelectItem>
+                      <SelectItem value="アルバイト">アルバイト</SelectItem>
+                      <SelectItem value="無し">無し</SelectItem>
+                      <SelectItem value="その他">その他</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
@@ -316,10 +325,9 @@ export default function AddCreatorForm({ onClose, onSubmit }: AddCreatorFormProp
                       <SelectValue placeholder={t("creatorDatabase.selectMaritalStatus")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Single">Single</SelectItem>
-                      <SelectItem value="Married">Married</SelectItem>
-                      <SelectItem value="Divorced">Divorced</SelectItem>
-                      <SelectItem value="Widowed">Widowed</SelectItem>
+                      <SelectItem value="Single">未婚</SelectItem>
+                      <SelectItem value="Married">既婚</SelectItem>
+                      <SelectItem value="Divorced">その他</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -561,11 +569,11 @@ export default function AddCreatorForm({ onClose, onSubmit }: AddCreatorFormProp
 
           <div className="flex justify-end space-x-3 pt-6 border-t">
             <Button type="button" variant="outline" onClick={handleClose} className="rounded-lg border-gray-200 hover:border-[#7A3CEF]">
-              {t("cancel")}
+              {t("creatorDatabase.cancel")}
             </Button>
             <Button type="submit" className="bg-[#7A3CEF] text-white hover:bg-[#5B23B4] rounded-lg">
               <Save className="mr-2 h-4 w-4" />
-              {t("submit")}
+              {t("creatorDatabase.submit")}
             </Button>
           </div>
         </form>
